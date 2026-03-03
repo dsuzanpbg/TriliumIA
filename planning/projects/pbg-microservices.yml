@@ -1,0 +1,182 @@
+# PBG Microservices - Tareas para Asana
+# Estructura: Proyecto -> Secciones (como padres) -> Tareas (subtareas)
+
+project:
+  name: "PBG Microservices"
+  description: "Proyecto de microservicios para PBG"
+
+# Tareas organizadas por sección
+tasks:
+  # ============================================
+  # INFRAESTRUCTURA + CORE
+  # ============================================
+
+  - name: "1.1 Docker Compose - Infraestructura Local"
+    section: "Infraestructura + Core"
+    due_date: "2026-03-01"
+    assignee: "P1"
+    notes: |
+      Crear entorno de desarrollo local con Docker Compose.
+      Servicios: RabbitMQ, Redis, Prometheus, Loki, Grafana.
+      Puerto: 5672, 6379, 9090, 3100, 3000
+
+  - name: "1.2 Template Base pbg-ms-python"
+    section: "Infraestructura + Core"
+    due_date: "2026-03-01"
+    assignee: "P2"
+    notes: |
+      Crear template reutilizable para microservicios Python.
+      Stack: FastAPI, Pydantic, Structlog, Sentry, pika.
+      Health checks: /health, /ready
+
+  - name: "1.3 API Gateway - Routing"
+    section: "Infraestructura + Core"
+    due_date: "2026-03-01"
+    assignee: "P1"
+    notes: |
+      Configurar reverse proxy para routing de servicios.
+      Nginx como API Gateway inicial.
+
+  - name: "2.1 pbg-ms-email - Cola de Emails"
+    section: "Infraestructura + Core"
+    due_date: "2026-03-02"
+    assignee: "P1"
+    notes: |
+      Microservicio para envio de emails con cola asincrona.
+      API: POST /api/v1/email/send, GET /api/v1/email/{id}/status
+      Colas: pbg.email.queued.v1, pbg.dlq.email.queued
+      Proveedores: Gmail, Outlook
+      Tests: 85% coverage (15 tests)
+
+  - name: "2.2 pbg-ms-pbgpro - Bubble API"
+    section: "Infraestructura + Core"
+    due_date: "2026-03-02"
+    assignee: "P2"
+    notes: |
+      Microservicio que encapsula API de Bubble (ERP).
+      API: CRUD Orders, Customers, Products, Measurements
+      Webhooks: Recibir eventos de Bubble
+      Cache: Redis
+      Eventos: pbg.pbgpro.order.created.v1, pbg.pbgpro.payment.verified.v1
+      Tests: 80% coverage (12 tests)
+
+  # ============================================
+  # CORE BUSINESS
+  # ============================================
+
+  - name: "2.3 pbg-ms-orders - Gestion de Ordenes"
+    section: "Core Business"
+    due_date: "2026-03-03"
+    assignee: "P1"
+    notes: |
+      Microservicio para gestion de ordenes.
+      API: CRUD Ordenes, Estados, Tracking
+      Eventos: pbg.order.created.v1, pbg.order.updated.v1
+      Integracion: Shopify, Bubble
+      Tests: 80% coverage (12 tests)
+
+  - name: "2.4 pbg-ms-shopify - Integracion Shopify"
+    section: "Core Business"
+    due_date: "2026-03-04"
+    assignee: "P2"
+    notes: |
+      Integracion con API de Shopify.
+      Sincronizacion de productos, ordenes, clientes
+      Webhooks para eventos de tienda
+      Tests: 85% coverage (15 tests)
+
+  - name: "2.5 pbg-ms-reports - Reportes"
+    section: "Core Business"
+    due_date: "2026-03-05"
+    assignee: "P1"
+    notes: |
+      Generacion de reportes.
+      Formatos: PDF, Excel, CSV
+      Programacion: Cron jobs para reportes diarios/semanales
+      Tests: 75% coverage (10 tests)
+
+  # ============================================
+  # UTILIDADES + QA
+  # ============================================
+
+  - name: "3.1 pbg-ms-utils - Utilidades Varias"
+    section: "Utilidades + QA"
+    due_date: "2026-03-06"
+    assignee: "P2"
+    notes: |
+      Coleccion de utilidades reutilizables.
+      Funciones comunes: fechas, formatos, validaciones
+      Libreria interna para todos los microservicios
+
+  - name: "3.2 pbg-ms-python - Base Template"
+    section: "Utilidades + QA"
+    due_date: "2026-03-06"
+    assignee: "P1"
+    notes: |
+      Template base para nuevos microservicios Python.
+      Configuracion estandar, logging, health checks
+
+  - name: "4.1 Tests Unitarios - Cobertura 80%"
+    section: "Utilidades + QA"
+    due_date: "2026-03-07"
+    assignee: "P1"
+    notes: |
+      Incrementar cobertura de tests unitarios.
+      Objetivo: 80% coverage en todos los servicios
+
+  - name: "4.2 Tests de Integracion"
+    section: "Utilidades + QA"
+    due_date: "2026-03-08"
+    assignee: "P2"
+    notes: |
+      Crear tests de integracion.
+      Probar flujo completo entre servicios
+
+  - name: "4.3 Pipeline CI/CD"
+    section: "Utilidades + QA"
+    due_date: "2026-03-08"
+    assignee: "P1"
+    notes: |
+      Configurar pipeline de CI/CD.
+      GitHub Actions: test, build, deploy
+      Automatizacion de releases
+
+  - name: "5.1 Documentacion API"
+    section: "Utilidades + QA"
+    due_date: "2026-03-09"
+    assignee: "P2"
+    notes: |
+      Documentar todas las APIs.
+      Formato: OpenAPI/Swagger
+      Versionado de APIs
+
+  - name: "5.2 Monitoreo y Alertas"
+    section: "Utilidades + QA"
+    due_date: "2026-03-09"
+    assignee: "P1"
+    notes: |
+      Configurar monitoreo.
+      Prometheus + Grafana
+      Alertas: Sentry, logs
+
+  # ============================================
+  # DIFERIDOS
+  # ============================================
+
+  - name: "6.1 pbg-ms-ocr - Reconocimiento de Imagenes"
+    section: "Diferidos"
+    due_date: ""
+    assignee: ""
+    notes: |
+      Pendiente - requiere investigacion.
+      OCR para facturas y recibos.
+      Integracion con servicios externos.
+
+  - name: "6.2 pbg-ms-telegram - Notificaciones"
+    section: "Diferidos"
+    due_date: ""
+    assignee: ""
+    notes: |
+      Pendiente - no esta en uso actualmente.
+      Bot API para notificaciones.
+      Estimacion: 10 hrs

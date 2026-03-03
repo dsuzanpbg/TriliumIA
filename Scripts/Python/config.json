@@ -1,0 +1,36 @@
+{
+  "asana": {
+    "token": "2/1212819181980643/1213035096329320:7864bbd04ceea846205e323dd5a631e0",
+    "workspace_gid": "1111569889778748",
+    "team_gid": "1202613482835363",
+    "portfolio_gid": "1213502983513584"
+  },
+  "trilium": {
+    "etapi_token": "TY9w4JqvJpFc_RnKCUj3ipI9z9rhDrt9vK/Fh/MUPOEqNDaHjjPh2DFM=",
+    "base_url": "http://192.168.1.81:37840",
+    "parent_note_id": "lPtAxa9oWXRT"
+  },
+  "jira": {
+    "domain": "",
+    "email": "",
+    "api_token": "",
+    "project_key": ""
+  },
+  "github": {
+    "token": "",
+    "owner": "",
+    "repo": ""
+  },
+  "person_map": {
+    "P1": "daniel@ejemplo.com",
+    "P2": "usuario2@ejemplo.com",
+    "P3": "usuario3@ejemplo.com"
+  },
+  "defaults": {
+    "yaml_file": "unorganizer/tasks.yml",
+    "dry_run": true,
+    "trilium_sync": true,
+    "scope": "all",
+    "my_ids": ["P1"]
+  }
+}

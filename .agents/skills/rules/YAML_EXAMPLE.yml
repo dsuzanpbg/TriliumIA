@@ -1,0 +1,58 @@
+# ============================================
+# EJEMPLO - Estructura YAML para Asana
+# ============================================
+# Este archivo muestra la estructura correcta para importar a Asana
+# Las secciones se convierten en tareas PADRE
+# Las tareas individuales se convierten en SUBTAREAS
+
+project:
+  name: "Proyecto Ejemplo"
+  description: "Ejemplo de estructura YAML"
+
+tasks:
+  # ============================================
+  # PRIMERA SECCION = PRIMER GRUPO DE TAREAS
+  # ============================================
+  
+  - name: "1.1 Primera tarea"
+    section: "Primera Seccion"
+    due_date: "2026-03-01"
+    assignee: "P1"
+    notes: |
+      Descripcion de la primera tarea.
+      Soporta **Markdown**.
+
+  - name: "1.2 Segunda tarea"
+    section: "Primera Seccion"
+    due_date: "2026-03-02"
+    assignee: "P2"
+    notes: |
+      Descripcion con lista:
+      - Item 1
+      - Item 2
+
+  # ============================================
+  # SEGUNDA SECCION = SEGUNDO GRUPO DE TAREAS
+  # ============================================
+
+  - name: "2.1 Tercera tarea"
+    section: "Segunda Seccion"
+    due_date: "2026-03-03"
+    assignee: "P1"
+    notes: |
+     Otra tarea en una seccion diferente.
+
+  # ============================================
+  # TAREA CON SUBTAREAS EXTRAS (opcional)
+  # ============================================
+
+  - name: "3.1 Tarea con subtareas"
+    section: "Tercera Seccion"
+    due_date: "2026-03-04"
+    assignee: "P2"
+    notes: |
+      Esta tarea tendra subtareas adicionales.
+    subtasks:
+      - "Subtarea A"
+      - "Subtarea B"
+      - "Subtarea C"

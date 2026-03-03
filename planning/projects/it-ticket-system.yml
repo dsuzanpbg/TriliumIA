@@ -1,0 +1,210 @@
+# IT Ticket System - Planeacion
+
+project:
+  name: "IT Ticket System"
+  description: "Sistema integral de gestion de tickets para departamento IT"
+
+tasks:
+  # ============================================
+  # FASE 1: GOOGLE WORKSPACE
+  # ============================================
+
+  - name: "1.1 Crear Google Form"
+    section: "Google Workspace"
+    assignee: "P1"
+    notes: |
+      Crear formulario con los campos:
+      - Nombre completo (texto corto, obligatorio)
+      - Area/Departamento (selector, obligatorio)
+      - Ubicacion especifica (texto corto, obligatorio)
+      - Telefono de contacto (texto corto, obligatorio)
+      - Email (email, opcional)
+      - Area IT responsable (selector: Infraestructura/Desarrollo, obligatorio)
+      - Tipo de solicitud (selector dinamico, obligatorio)
+      - Prioridad sugerida (selector: Alta/Media/Baja, obligatorio)
+      - Descripcion detallada (parrafo largo, obligatorio)
+      - Adjuntos (archivo, opcional)
+      - Comentarios adicionales (parrafo, opcional)
+
+  - name: "1.2 Crear Google Sheet vinculado"
+    section: "Google Workspace"
+    assignee: "P1"
+    notes: |
+      Crear hoja de calculo vinculada al formulario.
+      Nombrar la hoja: tickets-raw
+
+  - name: "1.3 Configurar Apps Script"
+    section: "Google Workspace"
+    assignee: "P1"
+    notes: |
+      Copiar el contenido de cada archivo .gs de apps-script/
+      Ejecutar setupAsanaProperties() y configurar con valores reales
+      Ejecutar initializeSystem() para crear hojas necesarias
+
+  - name: "1.4 Configurar Trigger"
+    section: "Google Workspace"
+    assignee: "P1"
+    notes: |
+      Agregar trigger onFormSubmit
+      Tipo de evento: Desde formulario
+      Tipo de evento de formulario: Al enviar formulario
+
+  # ============================================
+  # FASE 2: ASANA
+  # ============================================
+
+  - name: "2.1 Crear proyecto Infraestructura"
+    section: "Asana"
+    assignee: "P1"
+    notes: |
+      Crear proyecto "IT Infraestructura" con 5 secciones:
+      - Reportado
+      - Asignado
+      - En Progreso
+      - Resuelto
+      - Cerrado
+
+  - name: "2.2 Crear proyecto Desarrollo"
+    section: "Asana"
+    assignee: "P1"
+    notes: |
+      Crear proyecto "IT Desarrollo" con 6 secciones:
+      - Backlog
+      - Analisis
+      - Desarrollo
+      - Pruebas
+      - Produccion
+      - Cerrado
+
+  - name: "2.3 Crear Custom Fields"
+    section: "Asana"
+    assignee: "P1"
+    notes: |
+      Agregar campos personalizados a ambos proyectos:
+      - Ticket ID (Texto)
+      - Prioridad (Selector: Alta/Media/Baja)
+      - Ticket Relacionado (Texto)
+      - SLA Cumplido (Checkbox)
+      - Ubicacion (Texto)
+      - Telefono Contacto (Texto)
+      
+      Para proyecto Desarrollo, agregar:
+      - Estimacion (Numero)
+      - Tecnologia (Selector)
+      - Ambiente Pruebas (URL)
+
+  - name: "2.4 Obtener IDs necesarios"
+    section: "Asana"
+    assignee: "P1"
+    notes: |
+      Ejecutar en Apps Script:
+      - listProjectCustomFields('Infraestructura')
+      - listProjectCustomFields('Desarrollo')
+      - getProjectSections('Infraestructura')
+      - getProjectSections('Desarrollo')
+      - getPriorityFieldOptions()
+      
+      Copiar los IDs y actualizar Properties Service
+
+  # ============================================
+  # FASE 3: WEBHOOKS
+  # ============================================
+
+  - name: "3.1 Desplegar Web App"
+    section: "Webhooks"
+    assignee: "P1"
+    notes: |
+      En Apps Script: Implementar > Nueva implementacion
+      Tipo: Aplicacion web
+      Ejecutar como: Yo
+      Quien tiene acceso: Cualquier persona
+      Copiar URL de la Web App
+
+  - name: "3.2 Crear Webhooks en Asana"
+    section: "Webhooks"
+    assignee: "P1"
+    notes: |
+      Ejecutar en Apps Script:
+      - createAsanaWebhook('URL_DE_WEB_APP', 'Infraestructura')
+      - createAsanaWebhook('URL_DE_WEB_APP', 'Desarrollo')
+
+  # ============================================
+  # FASE 4: LOOKER STUDIO
+  # ============================================
+
+  - name: "4.1 Crear informe en Looker Studio"
+    section: "Looker Studio"
+    assignee: "P1"
+    notes: |
+      Ir a https://lookerstudio.google.com
+      Crear nuevo informe
+      Conectar fuente de datos: hoja tickets-processed
+      Seguir diseño en looker-studio/dashboard-design.md
+
+  - name: "4.2 Configurar permisos"
+    section: "Looker Studio"
+    assignee: "P1"
+    notes: |
+      Configurar permisos de acceso al dashboard
+      Compartir con usuarios necesarios
+
+  # ============================================
+  # FASE 5: TESTING
+  # ============================================
+
+  - name: "5.1 Testing: Ejecutar testFormSubmit"
+    section: "Testing"
+    assignee: "P1"
+    notes: |
+      Ejecutar testFormSubmit() en Apps Script
+      Verificar que:
+      - Se crea tarea en Asana
+      - Se envian notificaciones
+      - Se registra en Sheet
+      - Se crea carpeta en Drive
+
+  - name: "5.2 Testing: Prueba real"
+    section: "Testing"
+    assignee: "P1"
+    notes: |
+      Probar envio real del formulario
+      Verificar flujo completo
+
+  - name: "5.3 Testing: Webhooks"
+    section: "Testing"
+    assignee: "P1"
+    notes: |
+      Verificar webhooks con cambios en Asana
+      Probar que los estados se actualizan correctamente
+
+  # ============================================
+  # FASE 6: LANZAMIENTO
+  # ============================================
+
+  - name: "6.1 Lanzamiento: Enviar email"
+    section: "Lanzamiento"
+    assignee: "P1"
+    notes: |
+      Enviar email de lanzamiento
+      Usar plantilla en documentation/communication-templates/launch-email.md
+
+  - name: "6.2 Lanzamiento: Compartir guia"
+    section: "Lanzamiento"
+    assignee: "P1"
+    notes: |
+      Compartir guía de usuario
+      documentation/user-guide.md
+
+  - name: "6.3 Lanzamiento: Capacitar"
+    section: "Lanzamiento"
+    assignee: "P1"
+    notes: |
+      Capacitar a líderes de área
+      Explicar flujo de tickets
+
+  - name: "6.4 Lanzamiento: Monitoreo"
+    section: "Lanzamiento"
+    assignee: "P1"
+    notes: |
+      Monitorear primeros tickets
+      Verificar que todo funciona correctamente

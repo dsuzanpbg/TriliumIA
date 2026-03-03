@@ -1,0 +1,17 @@
+{
+  "asana": {
+    "token": "2/1212819181980643/1213035096329320:7864bbd04ceea846205e323dd5a631e0",
+    "workspace_gid": "1111569889778748"
+  },
+  "person_map": {
+    "P1": "daniel@ejemplo.com",
+    "P2": "usuario2@ejemplo.com",
+    "P3": "usuario3@ejemplo.com"
+  },
+  "defaults": {
+    "yaml_file": "unorganizer/tasks.yml",
+    "dry_run": true,
+    "trilium_sync": true,
+    "conflict_resolution": "latest-wins"
+  }
+}
