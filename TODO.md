@@ -18,6 +18,8 @@
 - [ ] **EVENT_DRIVEN.md** - Arquitectura de eventos
 - [ ] **CODE_REVIEW.md** - Revision de codigo
 - [ ] **TROUBLESHOOTING.md** - Problemas comunes
+- [ ] **CACHE.md** - Redis cache
+- [ ] **CONFIGURATION.md** - pydantic-settings
 
 ## Pendientes
 
@@ -33,6 +35,8 @@
 - [ ] Revisar EVENT_DRIVEN
 - [ ] Revisar CODE_REVIEW
 - [ ] Revisar TROUBLESHOOTING
+- [ ] Revisar CACHE
+- [ ] Revisar CONFIGURATION
 
 ---
 
