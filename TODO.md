@@ -20,6 +20,7 @@
 - [ ] **TROUBLESHOOTING.md** - Problemas comunes
 - [ ] **CACHE.md** - Redis cache
 - [ ] **CONFIGURATION.md** - pydantic-settings
+- [ ] **KANBAN.md** - Kanban boards
 
 ## Pendientes
 
