@@ -19,13 +19,18 @@ Herramienta para importar tareas desde archivos YAML a Asana y Trilium Notes.
 │       ├── SKILL.md
 │       └── rules/
 │           ├── ADDITIONAL_TOOLS.md
-│           ├── AGILE.md          # Metodologia SCRUM
-│           ├── CONVENTIONS.md    # Convenciones de codigo
-│           ├── DDD.md            # Domain-Driven Design
-│           ├── ERROR_HANDLING.md
-│           ├── PLANNING.md
+│           ├── AGILE.md              # Metodologia SCRUM
+│           ├── CONVENTIONS.md        # Convenciones de codigo
+│           ├── DDD.md                # Domain-Driven Design
+│           ├── ERROR_HANDLING.md     # Manejo de errores
+│           ├── ESTIMATIONS.md       # Guia de estimaciones
+│           ├── OBSERVABILITY.md      # Logging, metrics, monitoreo
+│           ├── ONBOARDING.md        # Incorporacion de nuevos miembros
+│           ├── PLANNING.md          # Guia de planificacion
+│           ├── RELEASE.md           # Proceso de lanzamiento
+│           ├── REPOSITORY.md        # Git submodules
 │           ├── TEMPLATES.md
-│           ├── UNIT_TESTING.md
+│           ├── UNIT_TESTING.md      # Testing unitario
 │           ├── YAML_EXAMPLE.yml
 │           └── YAML_STRUCTURE.md
 │
