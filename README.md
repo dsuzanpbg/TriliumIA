@@ -1,61 +1,120 @@
-# Trilium Project
+# TriliumIA
 
-Personal project management workspace with scripts and integrations.
+Herramienta para importar tareas desde archivos YAML a Asana y Trilium Notes.
+
+## Caracteristicas
+
+- Importacion de YAML a Asana (REST API)
+- Importacion a Trilium Notes (ETAPI)
+- Estructura padre/subtareas en Asana
+- Soporte para secciones Agile (To Do, In Progress, Done)
+- CLI con modo interactivo y TUI
 
 ## Estructura del Proyecto
 
 ```
 /
-├── .agents/                    # Configuracion para IAs
+├── .agents/                      # Configuracion para IAs
 │   └── skills/
 │       ├── SKILL.md
 │       └── rules/
-│           ├── AGILE.md        # Metodologia SCRUM
-│           ├── CONVENTIONS.md  # Convenciones de codigo
-│           ├── DDD.md          # Domain-Driven Design
-│           └── TEMPLATES.md    # Referencia de templates
+│           ├── ADDITIONAL_TOOLS.md
+│           ├── AGILE.md          # Metodologia SCRUM
+│           ├── CONVENTIONS.md    # Convenciones de codigo
+│           ├── DDD.md            # Domain-Driven Design
+│           ├── ERROR_HANDLING.md
+│           ├── PLANNING.md
+│           ├── TEMPLATES.md
+│           ├── UNIT_TESTING.md
+│           ├── YAML_EXAMPLE.yml
+│           └── YAML_STRUCTURE.md
 │
-├── Scripts/                     # Scripts de integracion
-│   └── Trilium/
-│       ├── Asana-Trilium.js              # Script basico
-│       └── Asana-Trilium-Bidirectional.js # Script completo
+├── Scripts/                      # Scripts de integracion
+│   ├── Python/                  # CLI tool
+│   │   ├── adapters/            # Asana y Trilium adapters
+│   │   ├── cli.py              # CLI principal
+│   │   ├── tui.py              # Interfaz TUI
+│   │   └── config.json         # Configuracion
+│   │
+│   └── Trilium/                # Scripts legacy
 │
-├── _docs/                      # Documentacion
-│   ├── templates/
-│   │   ├── TEMPLATE-TASK.md
-│   │   ├── TEMPLATE-ROADMAP.md
-│   │   ├── TEMPLATE-BUG-REPORT.md
-│   │   ├── TEMPLATE-USER-STORY.md
-│   │   └── TEMPLATE-MEETING-NOTES.md
-│   └── scripts/
-│       └── SCRIPTS.md
+├── planning/                     # Proyectos planeados
+│   ├── README.md
+│   └── projects/
+│       ├── pbg-microservices.yml
+│       ├── toolkits-ocr.yml
+│       ├── it-ticket-system.yml
+│       └── ejemplo.yml
 │
-└── README.md                   # Este archivo
+└── README.md
 ```
 
-## Quick Start
+## Uso Rapido
 
-### Para usar en Trilium:
+### CLI
 
-1. Copia el script que necesites a tu carpeta de scripts de Trilium
-2. Crea una nueva nota en Trilium
-3. Agrega los labels de configuracion
-4. Ejecuta el script
+```bash
+cd Scripts/Python
 
-### Configuracion de Asana
+# Ver proyectos disponibles
+python cli.py list
 
-Labels requeridos en la nota del script:
+# Analizar (dry-run)
+python cli.py asn -y ../planning/projects/pbg-microservices.yml
+
+# Ejecutar import
+python cli.py asn -y ../planning/projects/pbg-microservices.yml --execute
 ```
-#asanaToken=tu_token_de_asana
-#asanaWorkspaceGid=tu_workspace_id
+
+### Configuracion
+
+Editar `config.json`:
+
+```json
+{
+  "asana": {
+    "token": "tu_token",
+    "workspace_gid": "tu_workspace_id",
+    "team_gid": "tu_team_id"
+  },
+  "person_map": {
+    "P1": "email@tuempresa.com",
+    "P2": "email2@tuempresa.com"
+  }
+}
+```
+
+## Estructura YAML
+
+Las tareas usan formato `1.1`, `1.2`, etc. La `section` se convierte en tarea padre:
+
+```yaml
+project:
+  name: "Mi Proyecto"
+
+tasks:
+  - name: "1.1 Primera tarea"
+    section: "Infraestructura"
+    assignee: "P1"
+    due_date: "2026-03-01"
+    notes: |
+      Descripcion en Markdown
+```
+
+Resultado en Asana:
+```
+To Do
+├── [PADRE] Infraestructura
+│   ├── 1.1 Primera tarea
+│   └── 1.2 Segunda tarea
 ```
 
 ## Reglas del Proyecto
 
 1. **Sin emojis** - texto plano siempre
 2. **Idioma** - Espanol para docs, Ingles para codigo
-3. **DDD** - Lenguajo Ubicuo por dominio
+3. **DDD** - Lenguaje Ubicuo por dominio
 
 ---
 
-*Last updated: 2026-02-28*
+*Last updated: 2026-03-03*
