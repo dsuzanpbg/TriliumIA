@@ -21,6 +21,7 @@
 - [ ] **CACHE.md** - Redis cache
 - [ ] **CONFIGURATION.md** - pydantic-settings
 - [ ] **KANBAN.md** - Kanban boards
+- [ ] **IDEATION.md** - Generacion de ideas
 
 ## Pendientes
 
