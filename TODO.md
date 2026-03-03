@@ -22,6 +22,8 @@
 - [ ] **CONFIGURATION.md** - pydantic-settings
 - [ ] **KANBAN.md** - Kanban boards
 - [ ] **IDEATION.md** - Generacion de ideas
+- [ ] **PRESENTATIONS.md** - Presentaciones visuales
+- [ ] **WIREFRAMES.md** - Wireframes de baja fidelidad
 
 ## Pendientes
 
